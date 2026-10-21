@@ -1,6 +1,9 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
+import moonImage from "./assets/Moon.svg";
+import catImage from "./assets/Cat.svg";
+
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
@@ -16,6 +19,22 @@ head.setAttribute("fill", "#f3cf87");
 head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
+
+const moon = document.createElementNS("http://www.w3.org/2000/svg", "image");
+moon.setAttribute("href", moonImage);
+moon.setAttribute("x", "40");
+moon.setAttribute("y", "100");
+moon.setAttribute("width", "30");
+moon.setAttribute("height", "30");
+face.append(moon);
+
+const cat = document.createElementNS("http://www.w3.org/2000/svg", "image");
+cat.setAttribute("href", catImage);
+cat.setAttribute("x", "130"); // different spot so they don't overlap
+cat.setAttribute("y", "100");
+cat.setAttribute("width", "30");
+cat.setAttribute("height", "30");
+face.append(cat);
 
 const leftEye = document.createElementNS(
   "http://www.w3.org/2000/svg",
