@@ -69,3 +69,13 @@ spin.addEventListener("click", () => {
     { duration: 800, easing: "ease-in-out" },
   );
 });
+
+for (let i = 0; i < 100; i++) {
+  const angle = (i / 100) * Math.PI * 2;
+  const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  dot.setAttribute("cx", String(100 + 100 * Math.cos(angle)));
+  dot.setAttribute("cy", String(100 + 100 * Math.sin(angle)));
+  dot.setAttribute("r", "3");
+  dot.setAttribute("fill", "#563b67");
+  face.append(dot);
+}
