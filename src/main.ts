@@ -15,10 +15,40 @@ head.setAttribute("cx", "100");
 head.setAttribute("cy", "100");
 head.setAttribute("rx", "78");
 head.setAttribute("ry", "86");
-head.setAttribute("fill", "#f3cf87");
+head.setAttribute("fill", "url(#face-gradient)");
 head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
+
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+const gradient = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "linearGradient",
+);
+gradient.setAttribute("id", "face-gradient");
+gradient.setAttribute("x1", "0%");
+gradient.setAttribute("y1", "0%");
+gradient.setAttribute("x2", "100%");
+gradient.setAttribute("y2", "100%");
+
+const startColor = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "stop",
+);
+startColor.setAttribute("offset", "0%");
+startColor.setAttribute("stop-color", "#000000");
+
+const endColor = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "stop",
+);
+endColor.setAttribute("offset", "100%");
+endColor.setAttribute("stop-color", "#8B0000");
+
+gradient.append(startColor, endColor);
+
+defs.append(gradient);
+face.append(defs);
 
 const moon = document.createElementNS("http://www.w3.org/2000/svg", "image");
 moon.setAttribute("href", moonImage);
