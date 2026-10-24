@@ -46,7 +46,6 @@ endColor.setAttribute("offset", "100%");
 endColor.setAttribute("stop-color", "#8B0000");
 
 gradient.append(startColor, endColor);
-
 defs.append(gradient);
 face.append(defs);
 
