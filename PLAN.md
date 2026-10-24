@@ -1,7 +1,7 @@
 # CMPM121 E03
 
-A, geometry:
+A, geometry: Add a circle of 100 circles around the smiley face. Explored
 
-B, assets:
+B, assets: Add images to the cheeks of the smiley face. Explored
 
-C, color and curves:
+C, color and curves: Make a gradient from black to red on the face. Explored
