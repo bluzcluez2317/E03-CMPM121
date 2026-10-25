@@ -4,114 +4,121 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 import moonImage from "./assets/Moon.svg";
 import catImage from "./assets/Cat.svg";
 
-// The prototype grew inline. Keep it this way until the refactoring checkpoint.
-const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-face.setAttribute("viewBox", "0 0 200 200");
-face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+function buildFace(): SVGSVGElement {
+  const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  face.setAttribute("viewBox", "0 0 200 200");
+  face.setAttribute("role", "img");
+  face.setAttribute("aria-label", "A neutral face");
 
-const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-head.setAttribute("cx", "100");
-head.setAttribute("cy", "100");
-head.setAttribute("rx", "78");
-head.setAttribute("ry", "86");
-head.setAttribute("fill", "url(#face-gradient)");
-head.setAttribute("stroke", "#302c29");
-head.setAttribute("stroke-width", "4");
-face.append(head);
+  const head = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "ellipse",
+  );
 
-const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-const gradient = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "linearGradient",
-);
-gradient.setAttribute("id", "face-gradient");
-gradient.setAttribute("x1", "0%");
-gradient.setAttribute("y1", "0%");
-gradient.setAttribute("x2", "100%");
-gradient.setAttribute("y2", "100%");
+  head.setAttribute("cx", "100");
+  head.setAttribute("cy", "100");
+  head.setAttribute("rx", "78");
+  head.setAttribute("ry", "86");
+  head.setAttribute("fill", "url(#face-gradient)");
+  head.setAttribute("stroke", "#302c29");
+  head.setAttribute("stroke-width", "4");
+  face.append(head);
 
-const startColor = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "stop",
-);
-startColor.setAttribute("offset", "0%");
-startColor.setAttribute("stop-color", "#000000");
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const gradient = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "linearGradient",
+  );
+  gradient.setAttribute("id", "face-gradient");
+  gradient.setAttribute("x1", "0%");
+  gradient.setAttribute("y1", "0%");
+  gradient.setAttribute("x2", "100%");
+  gradient.setAttribute("y2", "100%");
 
-const endColor = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "stop",
-);
-endColor.setAttribute("offset", "100%");
-endColor.setAttribute("stop-color", "#8B0000");
+  const startColor = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  startColor.setAttribute("offset", "0%");
+  startColor.setAttribute("stop-color", "#000000");
 
-gradient.append(startColor, endColor);
+  const endColor = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  endColor.setAttribute("offset", "100%");
+  endColor.setAttribute("stop-color", "#8B0000");
 
-defs.append(gradient);
-face.append(defs);
+  gradient.append(startColor, endColor);
 
-const moon = document.createElementNS("http://www.w3.org/2000/svg", "image");
-moon.setAttribute("href", moonImage);
-moon.setAttribute("x", "40");
-moon.setAttribute("y", "100");
-moon.setAttribute("width", "30");
-moon.setAttribute("height", "30");
-face.append(moon);
+  defs.append(gradient);
+  face.append(defs);
 
-const cat = document.createElementNS("http://www.w3.org/2000/svg", "image");
-cat.setAttribute("href", catImage);
-cat.setAttribute("x", "130"); // different spot so they don't overlap
-cat.setAttribute("y", "100");
-cat.setAttribute("width", "30");
-cat.setAttribute("height", "30");
-face.append(cat);
+  const moon = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  moon.setAttribute("href", moonImage);
+  moon.setAttribute("x", "40");
+  moon.setAttribute("y", "100");
+  moon.setAttribute("width", "30");
+  moon.setAttribute("height", "30");
+  face.append(moon);
 
-const leftEye = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "ellipse",
-);
-leftEye.setAttribute("cx", "72");
-leftEye.setAttribute("cy", "82");
-leftEye.setAttribute("rx", "6");
-leftEye.setAttribute("ry", "9");
-leftEye.setAttribute("fill", "#302c29");
-face.append(leftEye);
+  const cat = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  cat.setAttribute("href", catImage);
+  cat.setAttribute("x", "130");
+  cat.setAttribute("y", "100");
+  cat.setAttribute("width", "30");
+  cat.setAttribute("height", "30");
+  face.append(cat);
 
-const rightEye = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "ellipse",
-);
-rightEye.setAttribute("cx", "128");
-rightEye.setAttribute("cy", "82");
-rightEye.setAttribute("rx", "6");
-rightEye.setAttribute("ry", "9");
-rightEye.setAttribute("fill", "#302c29");
-face.append(rightEye);
+  const leftEye = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "ellipse",
+  );
+  leftEye.setAttribute("cx", "72");
+  leftEye.setAttribute("cy", "82");
+  leftEye.setAttribute("rx", "6");
+  leftEye.setAttribute("ry", "9");
+  leftEye.setAttribute("fill", "#302c29");
+  face.append(leftEye);
 
-const nose = document.createElementNS("http://www.w3.org/2000/svg", "line");
-nose.setAttribute("x1", "100");
-nose.setAttribute("y1", "96");
-nose.setAttribute("x2", "96");
-nose.setAttribute("y2", "112");
-nose.setAttribute("stroke", "#302c29");
-nose.setAttribute("stroke-width", "4");
-nose.setAttribute("stroke-linecap", "round");
-face.append(nose);
+  const rightEye = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "ellipse",
+  );
+  rightEye.setAttribute("cx", "128");
+  rightEye.setAttribute("cy", "82");
+  rightEye.setAttribute("rx", "6");
+  rightEye.setAttribute("ry", "9");
+  rightEye.setAttribute("fill", "#302c29");
+  face.append(rightEye);
 
-const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-mouth.setAttribute("x1", "75");
-mouth.setAttribute("y1", "137");
-mouth.setAttribute("x2", "125");
-mouth.setAttribute("y2", "137");
-mouth.setAttribute("stroke", "#302c29");
-mouth.setAttribute("stroke-width", "4");
-mouth.setAttribute("stroke-linecap", "round");
-face.append(mouth);
+  const nose = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  nose.setAttribute("x1", "100");
+  nose.setAttribute("y1", "96");
+  nose.setAttribute("x2", "96");
+  nose.setAttribute("y2", "112");
+  nose.setAttribute("stroke", "#302c29");
+  nose.setAttribute("stroke-width", "4");
+  nose.setAttribute("stroke-linecap", "round");
+  face.append(nose);
 
+  const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  mouth.setAttribute("x1", "75");
+  mouth.setAttribute("y1", "137");
+  mouth.setAttribute("x2", "125");
+  mouth.setAttribute("y2", "137");
+  mouth.setAttribute("stroke", "#302c29");
+  mouth.setAttribute("stroke-width", "4");
+  mouth.setAttribute("stroke-linecap", "round");
+  face.append(mouth);
+
+  return face;
+}
+
+const face = buildFace();
 portrait.append(face);
 
 spin.addEventListener("click", () => {
-  // Restart rather than accumulate simultaneous animations on repeated clicks.
   for (const animation of face.getAnimations()) animation.cancel();
   face.animate(
     [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
